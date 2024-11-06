@@ -8,9 +8,24 @@ public class Game {
 	public static void main(String[] args) {
 		runGame();
 	}
+	public static void print(Object obj) {
+		System.out.println(obj.toString());
+	}
+	static Room currentRoom = World.buildWorld();
+	public static Room getRoom(){
+		return currentRoom;
+	}
+	public static Item getInventoryIt(String na) {
+		for(Item a: inventory) {
+			if(a.getName().equals(na)) {
+				return a;
+			}
+		}
+		return null;
+	}
 	static ArrayList<Item> inventory = new ArrayList<Item>();
 	public static void runGame() {
-		Room currentRoom = World.buildWorld();
+		Room currentRoom = getRoom();
 		Scanner input = new Scanner(System.in);
 		String command; //player's command
 		do {
@@ -41,10 +56,11 @@ public class Game {
 				Item i = currentRoom.getItem(words[1]);
 				if(i == null)
 					System.out.println("There's nothing to take.");
-				else
+				else {
 					inventory.add(i);
 					System.out.println("You pick up the " + i.getName() + ",");
 					currentRoom.addItem(words[1], null);
+				}
 				break;
 			case "look":
 				if(currentRoom.getItem(words[1]) != null)
@@ -68,10 +84,40 @@ public class Game {
 						System.out.println(it);
 					System.out.println();
 					break;
+			case "use":
+				System.out.println("You are trying to use the " + words[1] + ".");
+				if(currentRoom.getItem(words[1]) != null) {
+					currentRoom.getItem(words[1]).use();
+					System.out.println();
+				}
+				else {
+					if(getInventoryIt(words[1]) == null) {
+						System.out.println("There is no such item");
+					}
+					else {
+						getInventoryIt(words[1]).use();
+						System.out.println();
+					}
+				}
+				break;
+			case "open":
+				System.out.println("You are trying to open the " + words[1] + ".");
+				if(currentRoom.getItem(words[1]) != null) {
+					currentRoom.getItem(words[1]).open();
+					System.out.println();
+				}
+				else
+					if(getInventoryIt(words[1]) == null) {
+						System.out.println("There is no such item");
+					}
+					else {
+						getInventoryIt(words[1]).open();
+						System.out.println();
+					}
+				break;
 			default:
 				System.out.println("I don't know what that means sorry!");
-			}
-			}while(!command.equals("x"));
+		}}while(!command.equals("x"));
 		input.close();
 	}
 }

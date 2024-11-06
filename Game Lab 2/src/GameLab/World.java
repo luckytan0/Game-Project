@@ -12,6 +12,8 @@ public class World {
 		Item book = new Item("ThomasCalculusBook", "Math Textbook");
 		Item marker = new Item("ExpoMarker", "Black Marker");
 		Item computer = new Item("Dell", "Desktop");
+		Combination combination = new Combination("Combination", "Combination for the school's safe");
+		Safe safe = new Safe("Safe", "Safe with textbooks");
 		kapelski.addExit(kapelski1, 'e');
 		kapelski.addExit(kapelski2, 'w');
 		kapelski.addExit(kapelski3, 'n');
@@ -26,7 +28,9 @@ public class World {
 		kapelski4.addExit(kapelski, 'n');
 		kapelski4.addItem(computer.getName(), computer);
 		kapelski5.addExit(kapelski, 'd');
+		kapelski5.addItem(combination.getName(),combination);
 		kapelski6.addExit(kapelski, 'u');
+		kapelski6.addItem(safe.getName(), safe);
 		return kapelski;
 	}
 }
