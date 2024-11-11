@@ -2,18 +2,27 @@ package GameLab;
 
 public class World {
 	public static Room buildWorld() {
-		Room kapelski = new Room("You are at the Kapelski Hall 200.");
-		Room kapelski1 = new Room("You are at Kapelski Room 215.");
-		Room kapelski2 = new Room("You are at Kapelski Room 222B.");
-		Room kapelski3 = new Room("You are at Kapelski Room 229.");
-		Room kapelski4 = new Room("You are at Kapelski Room 236.");
-		Room kapelski5 = new Room("You are at Kapelski Room 310.");
-		Room kapelski6 = new Room("You are at Kapelski Room 101.");
+		Room kapelski = new Room("Kapelski Hall 200", "You are at Kapelski Hall 200.");
+		Room kapelski1 = new Room("Kapelski Room 215", "You are at Kapelski Room 215.");
+		Room kapelski2 = new Room("Kapelski Room 222B", "You are at Kapelski Room 222B.");
+		Room kapelski3 = new Room("Kapelski Room 229", "You are at Kapelski Room 229.");
+		Room kapelski4 = new Room("Kapelski Room 236", "You are at Kapelski Room 236.");
+		Room kapelski5 = new Room("Kapelski Room 310", "You are at Kapelski Room 310.");
+		Room kapelski6 = new Room("Kapelski Room 101", "You are at Kapelski Room 101.");
 		Item book = new Item("ThomasCalculusBook", "Math Textbook");
 		Item marker = new Item("ExpoMarker", "Black Marker");
 		Item computer = new Item("Dell", "Desktop");
+		Key key = new Key("KeybladeKey", "Sora's Key");
+		TeddyBear teddybear = new TeddyBear("TeddyBear", "Brown Teddy Bear");
+		Projector projector = new Projector("Projector", "Movie Projector");
 		Combination combination = new Combination("Combination", "Combination for the school's safe");
 		Safe safe = new Safe("Safe", "Safe with textbooks");
+		kapelski1.setLock(false);
+		kapelski2.setLock(false);
+		kapelski3.setLock(false);
+		kapelski4.setLock(false);
+		kapelski5.setLock(true);
+		kapelski6.setLock(false);
 		kapelski.addExit(kapelski1, 'e');
 		kapelski.addExit(kapelski2, 'w');
 		kapelski.addExit(kapelski3, 'n');
@@ -29,6 +38,7 @@ public class World {
 		kapelski4.addItem(computer.getName(), computer);
 		kapelski5.addExit(kapelski, 'd');
 		kapelski5.addItem(combination.getName(),combination);
+		kapelski5.addItem(key.getName(), key);
 		kapelski6.addExit(kapelski, 'u');
 		kapelski6.addItem(safe.getName(), safe);
 		return kapelski;

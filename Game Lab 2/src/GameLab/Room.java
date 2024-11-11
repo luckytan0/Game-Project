@@ -11,8 +11,11 @@ public class Room {
 	private Room up;
 	private Room down;
 	private HashMap<String, Item> it = new HashMap<String, Item>(); // The item in the room
+	private boolean lock;
+	private String name;
 	
-	public Room(String y){
+	public Room(String ne, String y){
+		name = ne;
 		description = y;
 	}
 	public Room getExit(char z) {
@@ -69,6 +72,18 @@ public class Room {
 	}
 	public Item removeItem(String na) {
 		return it.remove(na);
+	}
+	public boolean getLock() {
+		return lock;
+	}
+	public void setLock(boolean b) {
+		lock = b;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String ne) {
+		name = ne;
 	}
 	
 }

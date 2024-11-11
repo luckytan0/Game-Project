@@ -44,6 +44,8 @@ public class Game {
 				Room nextRoom = currentRoom.getExit(command.charAt(0));
 				if(nextRoom == null)
 					System.out.println("You can't go that way.");
+				else if(nextRoom.getLock()==true)
+						System.out.println("Room is locked sorry!");
 				else
 					currentRoom = nextRoom;
 				break;
