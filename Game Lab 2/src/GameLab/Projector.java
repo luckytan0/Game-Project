@@ -6,6 +6,11 @@ public class Projector extends Item{
 	}
 	@Override
 	public void use() {
+		if(getInventoryIt("diamond") == null) {
+			Game.print("Can't use this projector without this item");
+		}
+		else{
+			Game.print("Use this item to flash at the combination number due to the darkness.");
 		
 	}
 }
