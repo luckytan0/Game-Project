@@ -41,7 +41,7 @@ public class World {
 		kapelski5.addItem(combination.getName(),combination);
 		kapelski5.addItem("TeddyBear", teddybear);
 		kapelski5.addItem("TimeMachine", timemachine);
-		kapelski5.addexit(kapelski6, 'd');
+		kapelski5.addExit(kapelski6, 'd');
 		kapelski6.addExit(kapelski, 'u');
 		kapelski6.addItem(safe.getName(), safe);
 		return kapelski;
