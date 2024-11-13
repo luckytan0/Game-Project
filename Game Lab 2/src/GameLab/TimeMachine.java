@@ -6,7 +6,7 @@ public class TimeMachine extends Item{
 	}
 	@Override
 	public void use() {
-		if(getInventoryIt("diamond") == null) {
+		if(getInventoryIt("Diamond") == null) {
 			Game.print("Can't use the time machine without this item");
 		}
 		else {
