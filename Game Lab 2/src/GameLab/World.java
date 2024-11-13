@@ -14,7 +14,7 @@ public class World {
 		Item computer = new Item("Dell", "Desktop");
 		Key key = new Key("KeybladeKey", "Sora's Key");
 		TeddyBear teddybear = new TeddyBear("TeddyBear", "Brown Teddy Bear");
-		Projector projector = new Projector("Projector", "Movie Projector");
+		TimeMachine timemachine = new TimeMachine("TimeMachine", "Reverse Time Machine");
 		Combination combination = new Combination("Combination", "Combination for the school's safe");
 		Safe safe = new Safe("Safe", "Safe with textbooks");
 		kapelski1.setLock(false);
@@ -32,13 +32,16 @@ public class World {
 		kapelski1.addExit(kapelski, 'w');
 		kapelski2.addExit(kapelski, 'e');
 		kapelski2.addItem(book.getName(), book);
+		kapelski2.addExit(kapelski5, 'u');
 		kapelski3.addExit(kapelski, 's');
 		kapelski3.addItem(marker.getName(), marker);
 		kapelski4.addExit(kapelski, 'n');
 		kapelski4.addItem(computer.getName(), computer);
 		kapelski5.addExit(kapelski, 'd');
 		kapelski5.addItem(combination.getName(),combination);
-		kapelski5.addItem(key.getName(), key);
+		kapelski5.addItem("TeddyBear", teddybear);
+		kapelski5.addItem("TimeMachine", timemachine);
+		kapelski5.addexit(kapelski6, 'd');
 		kapelski6.addExit(kapelski, 'u');
 		kapelski6.addItem(safe.getName(), safe);
 		return kapelski;
