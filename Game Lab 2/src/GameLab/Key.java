@@ -10,7 +10,7 @@ public class Key extends Item {
 			Game.print("Try using this key to open Kapelski Room 310 door");
 		}
 		else if(currentRoom.getExit('u').getName().equals("Kapelski Room 310")) {
-			Game.print("");
+			Game.print("Kapelski Room 310 has been opened!");
 			currentRoom.getExit('u').setLock(false);
 		}
 		else
