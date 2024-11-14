@@ -12,7 +12,7 @@ public class World {
 		Item book = new Item("ThomasCalculusBook", "Math Textbook");
 		Item marker = new Item("ExpoMarker", "Black Marker");
 		Item computer = new Item("Dell", "Desktop");
-		Key key = new Key("KeybladeKey", "Sora's Key");
+		Key key = new Key("SwordKey", "Sora's Key");
 		TeddyBear teddybear = new TeddyBear("TeddyBear", "Brown Teddy Bear");
 		TimeMachine timemachine = new TimeMachine("TimeMachine", "Reverse Time Machine");
 		Combination combination = new Combination("Combination", "Combination for the school's safe");
@@ -32,6 +32,7 @@ public class World {
 		kapelski1.addExit(kapelski, 'w');
 		kapelski2.addExit(kapelski, 'e');
 		kapelski2.addItem(book.getName(), book);
+		kapelski2.addItem("SwordKey", key);
 		kapelski2.addExit(kapelski5, 'u');
 		kapelski3.addExit(kapelski, 's');
 		kapelski3.addItem(marker.getName(), marker);
