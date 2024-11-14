@@ -10,7 +10,8 @@ public class TeddyBear extends Item {
 			Game.print("Can't use the teddy bear without this item");
 		}
 		else {
-			Game.print("Use this item to get more info from the teddy bear.");
+			Game.print("You used the diamond and the bear begins to speak.");
+			Game.print("You must use the time machine.");
 		}
 	}
 }
