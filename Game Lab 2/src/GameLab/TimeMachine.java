@@ -1,4 +1,4 @@
-package Gaming;
+package GameLab;
 
 public class TimeMachine extends Item{
 	public TimeMachine(String na, String de) {
