@@ -11,7 +11,7 @@ public class TeddyBear extends Item {
 		}
 		else {
 			Game.print("You used the diamond and the bear begins to speak.");
-			Game.print("You must use the time machine.");
+			Game.print("You must use the time machine the bear says.");
 		}
 	}
 }
