@@ -10,7 +10,7 @@ public class TimeMachine extends Item{
 			Game.print("Can't use the time machine without this item");
 		}
 		else {
-			Game.print("You will teleport to Kapelski Room 215 since you also used the diamond for it.");
+			Game.print("You will teleport to Kapelski Room 215 after the bear tells you to use the time machine with the diamond.");
 			currentRoom = currentRoom.getExit('d').getExit('e');
 	}
 	
