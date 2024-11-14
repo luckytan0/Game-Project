@@ -2,7 +2,7 @@ package GameLab;
 
 public class Key extends Item {
 	public Key(String na, String de) {
-		super("Key", "Sword Key");
+		super("SwordKey", "Sora's Key");
 	}
 	@Override
 	public void use() {
