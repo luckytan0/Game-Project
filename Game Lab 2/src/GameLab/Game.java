@@ -1,11 +1,20 @@
 package GameLab;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 
 public class Game {
 	public static void main(String[] args) {
+		textfile();
 		runGame();
 	}
 	public static void print(Object obj) {
@@ -24,9 +33,59 @@ public class Game {
 		return null;
 	}
 	static ArrayList<Item> inventory = new ArrayList<Item>();
+	static HashMap<String, String> rooms = new HashMap<String, String>(); 
+	static HashMap<String, Room> roomObjects = new HashMap<String, Room>();
+	public static void hmtextFile(){
+		try {
+            		Scanner input = new Scanner(new File("Descrip.txt"));
+            		while(input.hasNextLine()) {
+                		String name = input.nextLine();
+                		String desc = input.nextLine();
+                		if(!name.equals("#") && !desc.equals("#")){
+                    			rooms.put(name, desc);
+                		}
+           		 }
+           		 input.close();
+        	} catch (FileNotFoundException e) {
+            		System.out.println("File not found!!!");
+        	}
+   	}
+	public static void saveGame(String fileName) {
+        	File f = new File(fileName);
+        	try {
+            		FileOutputStream fos = new FileOutputStream(f);
+            		ObjectOutputStream stream = new ObjectOutputStream(fos);
+           		stream.writeObject(currentRoom);
+            		stream.writeObject(inventory);
+            		stream.writeObject(roomObjects);
+            		stream.close();
+        	} catch (FileNotFoundException e) {
+            		System.out.println("File "+fileName+" not found.");
+       		} catch (IOException ex) {
+            		System.out.println("Bummers, man");
+		}
+	}
+	public static void loadGame(String fileName) {
+        	File f = new File(fileName);
+        	try {
+            		FileInputStream fos = new FileInputStream(f);
+            		ObjectInputStream stream = new ObjectInputStream(fos);
+            		currentRoom = (Room) stream.readObject();
+            		inventory = (ArrayList) stream.readObject();
+            		roomObjects = (HashMap) stream.readObject();
+            		stream.close();
+        	} catch (FileNotFoundException e) {
+            		System.out.println("File "+fileName+" not found.");
+            		System.exit(0);
+        	} catch (IOException ex) {
+           	 	System.out.println("Bummers, man");
+        	} catch (ClassNotFoundException ex) {
+            		System.out.println("Not an object.");
+		}
+	}
+	public static Scanner input = new Scanner(System.in);
 	public static void runGame() {
 		Room currentRoom = getRoom();
-		Scanner input = new Scanner(System.in);
 		String command; //player's command
 		do {
 			System.out.println(currentRoom);
@@ -117,8 +176,24 @@ public class Game {
 						System.out.println();
 					}
 				break;
+			case "talk":
+                		System.out.println("You are trying to talk to the " + words[1] + ".");
+				if(currentRoom.getNPC(words[1]) != null){
+                    			currentRoom.getNPC(words[1]).talk();
+                   			System.out.println();
+                		}
+				else{
+                    			System.out.println("There is no such thing!");
+                		}
+				break;
+         		case "save":
+                		saveGame(words[1]);
+                		break;  
+            		case "load":
+               		 	loadGame(words[1]);
+                		break;
 			default:
-				System.out.println("I don't know what that means sorry!");
+				System.out.println("I don't know what that means sorry!");	
 		}}while(!command.equals("x"));
 		input.close();
 	}
