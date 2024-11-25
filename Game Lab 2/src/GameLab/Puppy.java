@@ -1,7 +1,7 @@
 package GameLab;
 
 public class Puppy extends NPC{
-	public Puppy() {
+	public Puppy(String na, String de) {
 		super("puppy", "A hideous puppy wags his tail.");
 	}
 	int count = 0;
