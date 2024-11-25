@@ -14,7 +14,7 @@ import java.io.ObjectOutputStream;
 
 public class Game {
 	public static void main(String[] args) {
-		textfile();
+		hmtextfile();
 		runGame();
 	}
 	public static void print(Object obj) {
