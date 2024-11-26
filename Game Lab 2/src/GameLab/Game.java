@@ -13,7 +13,7 @@ import java.io.ObjectOutputStream;
 
 public class Game {
 	public static void main(String[] args) {
-		hmtextfile();
+		hmtextFile();
 		runGame();
 	}
 	public static void print(Object obj) {
