@@ -17,6 +17,8 @@ public class World {
 		TimeMachine timemachine = new TimeMachine("TimeMachine", "Reverse Time Machine");
 		Combination combination = new Combination("Combination", "Combination for the school's safe");
 		Safe safe = new Safe("Safe", "Safe with textbooks");
+		Puppy puppy = new Puppy("Puppy", "A hideous puppy wags his tail.");
+		Gorilla gorilla = new Gorilla("Gorilla", "Donkey and Diddy Kong");
 		kapelski1.setLock(false);
 		kapelski2.setLock(false);
 		kapelski3.setLock(false);
@@ -30,7 +32,9 @@ public class World {
 		kapelski.addExit(kapelski5, 'u');
 		kapelski.addExit(kapelski6, 'd');	
 		kapelski1.addExit(kapelski, 'w');
+		kapelski2.addNPC("Puppy", gorilla);
 		kapelski2.addExit(kapelski, 'e');
+		kapelski2.addNPC("Gorilla", gorilla);
 		kapelski2.addItem(book.getName(), book);
 		kapelski2.addItem("SwordKey", key);
 		kapelski2.addExit(kapelski5, 'u');
