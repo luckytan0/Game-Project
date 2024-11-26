@@ -1,4 +1,4 @@
-package Gaming;
+package GameLab;
 
 public class Gorilla extends NPC{
 	public Gorilla(String na, String de) {
