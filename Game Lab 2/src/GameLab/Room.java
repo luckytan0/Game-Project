@@ -12,7 +12,7 @@ public class Room implements Serializable{
 	private Room up;
 	private Room down;
 	private HashMap<String, Item> it = new HashMap<String, Item>(); // The item in the room
-	private HashMap<String, NPC> it = new HashMap<String, NPC>(); // The npc in the room
+	private HashMap<String, NPC> npc = new HashMap<String, NPC>(); // The npc in the room
 	private boolean lock;
 	private String name;
 	
