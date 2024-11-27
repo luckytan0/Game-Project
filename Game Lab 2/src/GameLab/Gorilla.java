@@ -19,7 +19,7 @@ public class Gorilla extends NPC{
 		else if(count==1) {
 			say("Hey would you guys tell us about your video game? Yes or No?");
 			String[] options = {
-					"Sure, but only if you give us our favorite fruit in bananas",
+					"Sure thing give us a sec, thanks for asking by the way",
 					"No since you offended us we will not tell you about our video game."
 			};
 			getResponse(options);
@@ -39,7 +39,7 @@ public class Gorilla extends NPC{
 				break;
 			case 2:
 				say("We are monkeys, got a problem with it?");
-				Game.print("The Kongs attacks you with their fist. You deserve it.");
+				Game.print("The Kongs attacks you with their strong fist espeically their bananas. You deserve it.");
 				break;
 			}
 		}
