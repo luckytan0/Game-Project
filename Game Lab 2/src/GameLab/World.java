@@ -32,7 +32,7 @@ public class World {
 		kapelski.addExit(kapelski5, 'u');
 		kapelski.addExit(kapelski6, 'd');	
 		kapelski1.addExit(kapelski, 'w');
-		kapelski2.addNPC("Puppy", gorilla);
+		kapelski2.addNPC("Puppy", puppy);
 		kapelski2.addExit(kapelski, 'e');
 		kapelski2.addNPC("Gorilla", gorilla);
 		kapelski2.addItem(book.getName(), book);
