@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.io.Serializable;
 
 public class Room implements Serializable{
-	private String description;
 	private Room east;
 	private Room west;
 	private Room north;
