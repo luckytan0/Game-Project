@@ -1,6 +1,5 @@
 package GameLab;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -9,6 +8,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.IOException;
 
 
 public class Game {
@@ -16,10 +17,13 @@ public class Game {
 		hmtextFile();
 		runGame();
 	}
+	static ArrayList<Item> inventory = new ArrayList<Item>();
+	static HashMap<String, String> rooms = new HashMap<String, String>(); 
+	static HashMap<String, Room> roomObjects = new HashMap<String, Room>();
+	static Room currentRoom = World.buildWorld();
 	public static void print(Object obj) {
 		System.out.println(obj.toString());
 	}
-	static Room currentRoom = World.buildWorld();
 	public static Room getRoom(){
 		return currentRoom;
 	}
@@ -31,9 +35,6 @@ public class Game {
 		}
 		return null;
 	}
-	static ArrayList<Item> inventory = new ArrayList<Item>();
-	static HashMap<String, String> rooms = new HashMap<String, String>(); 
-	static HashMap<String, Room> roomObjects = new HashMap<String, Room>();
 	public static void hmtextFile(){
 		try {
             		Scanner input = new Scanner(new File("Descrip.txt"));
