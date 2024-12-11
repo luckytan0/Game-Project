@@ -29,4 +29,7 @@ public class Item{
 	public void use() {
 		Game.print("You can't use that!");
 	}
+	public void give() {
+		Game.print("You can't give that!");
+	}
 }
