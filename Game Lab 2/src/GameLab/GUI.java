@@ -15,9 +15,8 @@ public class GUI extends JFrame implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent event){
-		JButton j = (JButton) event.getSource();
-		String s = textField.getText();
-		Game.processCommand(s);
+		String dc = textField.getText();
+		Game.processCommand(dc);
 	}
 	private void buildWindow(){
 		setTitle("Game");
