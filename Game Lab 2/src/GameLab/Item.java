@@ -1,11 +1,10 @@
 package GameLab;
 
 
-public class Item extends Game{
+public class Item{
 	private String name;
 	private String description;
 	public Item(String na, String de){
-		super();
 		name = na;
 		description = de; 
 	}
