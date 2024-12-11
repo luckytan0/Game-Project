@@ -49,7 +49,7 @@ public class Gorilla extends NPC{
 				say("Yes we will tell you about our video game.");
 				Game.print("All you have to do is collect as much bananas as you can in the game.");
 				Item banana = new Item("Banana", "A banana of currency");
-                Game.inventory.add(banana);
+                		Game.inventory.add(banana);
 				break;
 			case 2:
 				say("You're such a hater seriously");
@@ -58,4 +58,16 @@ public class Gorilla extends NPC{
 			}
 		}
 	}
+	public void give(Item it){
+        if(Game.getInventoryIt(it.getName()) == null){
+            Game.print("You dont have such item");
+        }
+        else if(it.getName() == "currency"){
+            Game.print("You gave the " + it.getName() + " to Donkey and Diddy Kong");
+            Game.inventory.remove(it);
+        }
+        else{
+            Game.print("You can't give the " + it.getName() + " to Donkey and Diddy Kong");
+        }
+    }
 }
