@@ -15,11 +15,14 @@ import java.io.IOException;
 public class Game {
 	public static void main(String[] args) {
 		hmtextFile();
+		gui = new GUI();
 		runGame();
 	}
+	private static GUI gui;
 	static ArrayList<Item> inventory = new ArrayList<Item>();
 	static HashMap<String, String> rooms = new HashMap<String, String>(); 
-	static HashMap<String, Room> roomObjects = new HashMap<String, Room>();
+	static HashMap<String, Room> roomItems = new HashMap<String, Room>();
+	public static Scanner input = new Scanner(System.in);
 	static Room currentRoom = World.buildWorld();
 	public static void print(Object obj) {
 		System.out.println(obj.toString());
@@ -57,7 +60,7 @@ public class Game {
             		ObjectOutputStream stream = new ObjectOutputStream(fos);
            		stream.writeObject(currentRoom);
             		stream.writeObject(inventory);
-            		stream.writeObject(roomObjects);
+            		stream.writeObject(roomItems);
             		stream.close();
         	} catch (FileNotFoundException e) {
             		System.out.println("File "+fileName+" not found.");
@@ -72,7 +75,7 @@ public class Game {
             		ObjectInputStream stream = new ObjectInputStream(fos);
             		currentRoom = (Room) stream.readObject();
             		inventory = (ArrayList) stream.readObject();
-            		roomObjects = (HashMap) stream.readObject();
+            		roomItems = (HashMap) stream.readObject();
             		stream.close();
         	} catch (FileNotFoundException e) {
             		System.out.println("File "+fileName+" not found.");
@@ -83,11 +86,8 @@ public class Game {
             		System.out.println("Not an object.");
 		}
 	}
-	public static Scanner input = new Scanner(System.in);
-	public static void runGame() {
-		Room currentRoom = getRoom();
+	public static void processCommand(String command) {
 		String command; //player's command
-		do {
 			System.out.println(currentRoom);
 			System.out.println("What location do you wanna go?");
 			command = input.nextLine();
@@ -102,89 +102,94 @@ public class Game {
 			case "d":
 				Room nextRoom = currentRoom.getExit(command.charAt(0));
 				if(nextRoom == null)
-					System.out.println("You can't go that way.");
+					Game.print("You can't go that way.");
 				else if(nextRoom.getLock()==true)
-						System.out.println("Room is locked sorry!");
+						Game.print("Room is locked sorry!");
 				else
 					currentRoom = nextRoom;
+				Game.print(currentRoom);
 				break;
 				
 			case "x":
-				System.out.println("Thanks for walking through my game!");
+				Game.print("Thanks for walking through my game!");
 				break;
 			case "take":
-				System.out.println("You are trying to take the " +words[1]+".");
-				Item i = currentRoom.getItem(words[1]);
-				if(i == null)
-					System.out.println("There's nothing to take.");
+				Game.print("You are trying to take the " + words[1] + ".");
+				if(currentRoom.getItem(words[1]) == null)
+                    			Game.print("No items found\n");
 				else {
-					inventory.add(i);
-					System.out.println("You pick up the " + i.getName() + ",");
+					inventory.add(currentRoom.getItem(words[1]));
+					Game.print("You pick up the " + currentRoom.getItem(words[1]).getName() + ",");
 					currentRoom.addItem(words[1], null);
 				}
 				break;
 			case "look":
 				if(currentRoom.getItem(words[1]) != null)
-					System.out.println(currentRoom.getItem(words[1]).getDescription()+"\n");
+					Game.print(currentRoom.getItem(words[1]).getDescription()+"\n");
 				else {
 					boolean found = false;
 					for(Item it: inventory)
 						if(it.getName().equals(words[1]))
-							System.out.println(it.getDescription() + "\n");
+							Game.print(it.getDescription() + "\n");
 							found = true;
 					
 					if(found==false)
-							System.out.println("There is no such item.\n");
-				}
-						
+						Game.print("There is no such item.\n");
+				}		
 				break;			
-					
 			case "i":
-				System.out.println("You are carrying:");
-					for(Item it:inventory)
-						System.out.println(it);
-					System.out.println();
-					break;
+				Game.print("You are carrying:");
+				for(Item it:inventory)
+					Game.print(it);
+				Game.print("\n");
+				break;
 			case "use":
-				System.out.println("You are trying to use the " + words[1] + ".");
+				Game.print("You are trying to use the " + words[1] + ".");
 				if(currentRoom.getItem(words[1]) != null) {
 					currentRoom.getItem(words[1]).use();
-					System.out.println();
+					Game.print("\n");
 				}
 				else {
 					if(getInventoryIt(words[1]) == null) {
-						System.out.println("There is no such item");
+						Game.print("There is no such item");
 					}
 					else {
 						getInventoryIt(words[1]).use();
-						System.out.println();
+						Game.print("\n");
 					}
 				}
 				break;
 			case "open":
-				System.out.println("You are trying to open the " + words[1] + ".");
-				if(currentRoom.getItem(words[1]) != null) {
+				Game.print("You are trying to open the " + words[1] + ".");
+				if (currentRoom.getItem(words[1]) != null) {
 					currentRoom.getItem(words[1]).open();
-					System.out.println();
+					Game.print("\n");
+				} else if (getInventoryIt(words[1]) == null) {
+					Game.print("There is no such item to open!");
+				} else {
+					getInventoryIt(words[1]).open();
+					Game.print("\n");
 				}
-				else
-					if(getInventoryIt(words[1]) == null) {
-						System.out.println("There is no such item");
-					}
-					else {
-						getInventoryIt(words[1]).open();
-						System.out.println();
-					}
 				break;
 			case "talk":
-                		System.out.println("You are trying to talk to the " + words[1] + ".");
-				if(currentRoom.getNPC(words[1]) != null){
-                    			currentRoom.getNPC(words[1]).talk();
-                   			System.out.println();
-                		}
-				else{
-                    			System.out.println("There is no such thing!");
-                		}
+				Game.print("You are trying to talk to the " + words[1] + ".");
+				if (currentRoom.getNPC(words[1]) != null) {
+					currentRoom.getNPC(words[1]).talk();
+					Game.print("/n");
+				} else {
+					Game.print("There is no such thing as talking!");
+				}
+				break;
+			case "give":
+				Game.print("You are tyring to give the " + words[1] + " to the " + words[3]);
+				if (currentRoom.getNPC(words[3]) != null) {
+					if (getInventoryIt(words[1]) != null)
+						currentRoom.getNPC(words[3]).give(getInventoryIt(words[1]));
+					else
+						Game.print("You don't have " + words[1]);
+				} else {
+					Game.print("There is no such thing as giving!");
+				}
 				break;
          		case "save":
                 		saveGame(words[1]);
@@ -193,8 +198,7 @@ public class Game {
                		 	loadGame(words[1]);
                 		break;
 			default:
-				System.out.println("I don't know what that means sorry!");	
-		}}while(!command.equals("x"));
-		input.close();
+				System.out.println("I don't know what that means sorry!");
+			}
 	}
 }
