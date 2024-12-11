@@ -11,7 +11,7 @@ public class Key extends Item {
 		}
 		else if(currentRoom.getExit('u').getName().equals("Kapelski Room 310")) {
 			Game.print("Kapelski Room 310 has been opened!");
-			currentRoom.getExit('u').setLock(false);
+			Game.currentRoom.getExit('u').setLock(false);
 		}
 		else
 			Game.print("Try using this key to open Kapelski Room 310 door");
