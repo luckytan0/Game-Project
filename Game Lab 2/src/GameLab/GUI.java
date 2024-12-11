@@ -1,4 +1,4 @@
-package Gamer;
+package GameLab;
 
 import javax.swing.*;
 import java.awt.*;
