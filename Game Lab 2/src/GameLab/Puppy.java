@@ -49,7 +49,7 @@ public class Puppy extends NPC{
 				say("Yay! Fetch!");
 				Game.print("The puppy runs off and returns with a ball. The player receives the ball.");
 				Item ball = new Item("Ball", "A bouncy tennis ball");
-                Game.inventory.add(ball);
+                		Game.inventory.add(ball);
 				break;
 			case 2:
 				say("You're a bad person! I don't like you!");
@@ -58,5 +58,18 @@ public class Puppy extends NPC{
 			}
 		}
 	}
+	public void give(Item it){
+        if(Game.getInventoryIt(it.getName()) == null){
+            Game.print("You dont have such item");
+        }
+        else if(it.getName() == "toy"){
+            Game.print("You gave the " + it.getName() + " to the puppy");
+            Game.inventory.remove(it);
+        }
+        else{
+            Game.print("You can't give the " + it.getName() + " to the puppy");
+        }
+    }
 }
+
 
