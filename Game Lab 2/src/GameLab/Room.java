@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.io.Serializable;
 
 public class Room implements Serializable{
+	private String name;
 	private Room east;
 	private Room west;
 	private Room north;
@@ -13,7 +14,6 @@ public class Room implements Serializable{
 	private HashMap<String, Item> it = new HashMap<String, Item>(); // The item in the room
 	private HashMap<String, NPC> npc = new HashMap<String, NPC>(); // The npc in the room
 	private boolean lock;
-	private String name;
 	
 	public Room(String ne, String y){
 		name = ne;
@@ -63,8 +63,8 @@ public class Room implements Serializable{
 
 	}
 	public String toString() {
-		String d = this.getDescription(name);
-		return d;
+		String dc = this.getDescription(name);
+		return dc;
 	}
 	public void addItem(String de, Item i) {
 		it.put(de, i);
@@ -85,11 +85,11 @@ public class Room implements Serializable{
 		return name;
 	}
 	public void setName(String ne) {
-	name = ne;
+		name = ne;
 	}
 	public String getDescription(String n){
-	       for(String d : Game.rooms.keySet()){
-	           if(d.equals(n)){
+	       for(String dc : Game.rooms.keySet()){
+	           if(dc.equals(n)){
 	               return Game.rooms.get(d);
 	           }
 	       }
