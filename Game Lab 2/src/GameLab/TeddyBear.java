@@ -6,7 +6,7 @@ public class TeddyBear extends Item {
 	}
 	@Override
 	public void use() {
-		if(getInventoryIt("Diamond") == null) {
+		if(Game.getInventoryIt("Diamond") == null) {
 			Game.print("Can't use the teddy bear without this item");
 		}
 		else {
