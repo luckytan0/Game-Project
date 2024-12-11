@@ -6,12 +6,12 @@ public class TimeMachine extends Item{
 	}
 	@Override
 	public void use() {
-		if(getInventoryIt("Diamond") == null) {
+		if(Game.getInventoryIt("Diamond") == null) {
 			Game.print("Can't use the time machine without this item");
 		}
 		else {
 			Game.print("You will teleport to Kapelski Room 215 after the bear tells you to use the time machine with the diamond.");
-			currentRoom = currentRoom.getExit('d').getExit('e');
+			Game.currentRoom = Game.currentRoom.getExit('d').getExit('e');
 	}
 	
 }
