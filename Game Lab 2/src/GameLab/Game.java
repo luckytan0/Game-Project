@@ -192,7 +192,7 @@ public class Game {
                		 	loadGame(words[1]);
                 		break;
 			default:
-				System.out.println("I don't know what that means sorry!");
+				Game.print("I don't know what that means sorry!");
 			}
 	}
 }
