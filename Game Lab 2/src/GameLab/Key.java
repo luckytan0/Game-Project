@@ -6,10 +6,10 @@ public class Key extends Item {
 	}
 	@Override
 	public void use() {
-		if(currentRoom.getExit('u') == null) {
+		if(Game.currentRoom.getExit('u') == null) {
 			Game.print("Try using this key to open Kapelski Room 310 door");
 		}
-		else if(currentRoom.getExit('u').getName().equals("Kapelski Room 310")) {
+		else if(Game.currentRoom.getExit('u').getName().equals("Kapelski Room 310")) {
 			Game.print("Kapelski Room 310 has been opened!");
 			Game.currentRoom.getExit('u').setLock(false);
 		}
