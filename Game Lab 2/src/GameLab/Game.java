@@ -175,7 +175,7 @@ public class Game {
 				}
 				break;
 			case "give":
-				Game.print("You are tyring to give the " + words[1] + " to the " + words[3]);
+				Game.print("You are trying to give the " + words[1] + " to the " + words[3]);
 				if (currentRoom.getNPC(words[3]) != null) {
 					if (getInventoryIt(words[1]) != null)
 						currentRoom.getNPC(words[3]).give(getInventoryIt(words[1]));
