@@ -25,7 +25,7 @@ public class Game {
 	public static Scanner input = new Scanner(System.in);
 	static Room currentRoom = World.buildWorld();
 	public static void print(Object obj) {
-		System.out.println(obj.toString());
+		gui.textArea.append((obj.toString()) + "\n");
 	}
 	public static Room getRoom(){
 		return currentRoom;
@@ -87,13 +87,8 @@ public class Game {
 		}
 	}
 	public static void processCommand(String command) {
-		String command; //player's command
-			System.out.println(currentRoom);
-			System.out.println("What location do you wanna go?");
-			command = input.nextLine();
-			String[] words = command.split(" ");
-			
-			switch(words[0]) {
+		String[] words = command.split(" ");
+		switch(words[0]) {
 			case "e":
 			case "w":
 			case "n":
@@ -108,8 +103,7 @@ public class Game {
 				else
 					currentRoom = nextRoom;
 				Game.print(currentRoom);
-				break;
-				
+				break;	
 			case "x":
 				Game.print("Thanks for walking through my game!");
 				break;
@@ -188,7 +182,7 @@ public class Game {
 					else
 						Game.print("You don't have " + words[1]);
 				} else {
-					Game.print("There is no such thing as giving!");
+					Game.print("There is no such thing as give!");
 				}
 				break;
          		case "save":
